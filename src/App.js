@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { io } from "socket.io-client";
+import { useEffect } from "react";
 
 function App() {
+  const socket = io("http://localhost:3000", {
+    autoConnect: true,
+  });
+
+  useEffect(() => {
+    socket.on("message_5_1", (data) => console.log(data));
+  }, [socket]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className="App"
+      onClick={() => {
+        socket.emit("chat", 5, 6, 1, {
+          message: "heeeyyy",
+          is_typing: false,
+          is_active: true,
+        });
+      }}
+    >
+      ASDASDASD
     </div>
   );
 }
