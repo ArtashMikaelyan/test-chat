@@ -9,13 +9,13 @@ function App() {
   });
 
   useEffect(() => {
-    socket.on("message_5_1", (data) => console.log(data));
+    socket.on("uxarkeci_data_5_6", (data) => console.log(data));
   }, [socket]);
   return (
     <div
       className="App"
       onClick={() => {
-        socket.emit("chat", 5, 6, 1, {
+        socket.emit("staca_data", 5, 6, 1, {
           message: "heeeyyy",
           is_typing: false,
           is_active: true,
